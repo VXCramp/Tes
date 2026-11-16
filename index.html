@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Produk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <div>
+        <h1>Daftar Produk</h1>
+        <p class="muted">Kelola produk: tambah, ubah, dan hapus.</p>
+      </div>
+      <button class="btn btn-primary" id="btn-tambah">+ Tambah Produk</button>
+    </header>
+
+    <section class="card">
+      <table class="table">
+        <thead>
+          <tr><th>ID</th><th>Nama Produk</th><th>Harga</th><th class="right">Aksi</th></tr>
+        </thead>
+        <tbody id="product-body"></tbody>
+      </table>
+      <p id="empty-state" class="muted empty" hidden>Belum ada produk.</p>
+    </section>
+  </main>
+
+  <!-- Modal Tambah -->
+  <div class="overlay" id="modal-tambah" hidden>
+    <form class="modal" id="form-tambah" novalidate>
+      <button type="button" class="close" data-close aria-label="Tutup">&times;</button>
+      <h2>Tambah Produk</h2>
+      <p class="muted">Masukkan informasi produk baru.</p>
+      <label for="tambah-nama">Nama Produk</label>
+      <input id="tambah-nama" type="text" placeholder="Contoh: Pulpen" autocomplete="off">
+      <label for="tambah-harga">Harga (Rp)</label>
+      <input id="tambah-harga" type="number" placeholder="Contoh: 5000" min="1">
+      <p class="hint" id="tambah-error">Harga harus lebih dari 0.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-outline" data-close>Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Produk</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal Edit -->
+  <div class="overlay" id="modal-edit" hidden>
+    <form class="modal" id="form-edit" novalidate>
+      <button type="button" class="close" data-close aria-label="Tutup">&times;</button>
+      <h2>Edit Produk</h2>
+      <p class="muted">Perbarui informasi produk yang dipilih.</p>
+      <p class="muted small" id="edit-id">ID: -</p>
+      <label for="edit-nama">Nama Produk</label>
+      <input id="edit-nama" type="text" autocomplete="off">
+      <label for="edit-harga">Harga (Rp)</label>
+      <input id="edit-harga" type="number" min="1">
+      <p class="hint" id="edit-error">Harga harus lebih dari 0.</p>
+      <div class="actions">
+        <button type="button" class="btn btn-outline" data-close>Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal Hapus -->
+  <div class="overlay" id="modal-hapus" hidden>
+    <div class="modal center">
+      <button type="button" class="close" data-close aria-label="Tutup">&times;</button>
+      <div class="trash">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+      </div>
+      <h2>Hapus Produk?</h2>
+      <p class="muted">Produk yang dihapus tidak dapat dikembalikan.</p>
+      <div class="summary">
+        <span class="muted small" id="hapus-id">ID: -</span>
+        <strong id="hapus-nama">-</strong>
+        <span class="price" id="hapus-harga">Rp0</span>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-outline" data-close>Batal</button>
+        <button type="button" class="btn btn-danger" id="btn-konfirmasi-hapus">Hapus Produk</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
